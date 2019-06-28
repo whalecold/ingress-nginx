@@ -1154,6 +1154,7 @@ stream {
             }
             {{ end }}
             {{ end }}
+            set $proxy_alternative_upstream_name "";
 
             {{ if (or $location.ModSecurity.Enable $all.Cfg.EnableModsecurity) }}
             modsecurity on;
