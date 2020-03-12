@@ -5,9 +5,6 @@ approvers:
   - ingress-nginx-maintainers
   - ElvinEfendi
   - whalecold
-  - qianlei90
-  - hanxueluo
-  - hicaistar
 
 reviewers:
   - aledbf
@@ -16,3 +13,4 @@ reviewers:
   - qianlei90
   - hanxueluo
   - hicaistar
+  - supereagle
