@@ -4,7 +4,15 @@ approvers:
   - ingress-nginx-admins
   - ingress-nginx-maintainers
   - ElvinEfendi
+  - whalecold
+  - qianlei90
+  - hanxueluo
+  - hicaistar
 
 reviewers:
   - aledbf
   - ElvinEfendi
+  - whalecold
+  - qianlei90
+  - hanxueluo
+  - hicaistar
