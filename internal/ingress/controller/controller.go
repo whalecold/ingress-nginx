@@ -18,11 +18,12 @@ package controller
 
 import (
 	"fmt"
-	"k8s.io/ingress-nginx/internal/ingress/annotations/log"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
+
+	"k8s.io/ingress-nginx/internal/ingress/annotations/log"
 
 	"github.com/mitchellh/hashstructure"
 	"k8s.io/klog"
@@ -697,6 +698,7 @@ func (n *NGINXController) createUpstreams(data []*ingress.Ingress, du *ingress.B
 					HeaderValue:   anns.Canary.HeaderValue,
 					HeaderPattern: anns.Canary.HeaderPattern,
 					Cookie:        anns.Canary.Cookie,
+					CookieValue:   anns.Canary.CookieValue,
 				}
 			}
 
@@ -766,6 +768,7 @@ func (n *NGINXController) createUpstreams(data []*ingress.Ingress, du *ingress.B
 						HeaderValue:   anns.Canary.HeaderValue,
 						HeaderPattern: anns.Canary.HeaderPattern,
 						Cookie:        anns.Canary.Cookie,
+						CookieValue:   anns.Canary.CookieValue,
 					}
 				}
 
