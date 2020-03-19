@@ -126,6 +126,8 @@ type TrafficShapingPolicy struct {
 	Cookie string `json:"cookie"`
 	// CookieValue on which to redirect requests to this backend
 	CookieValue string `json:"cookieValue"`
+	// CookiePattern the cookie value match pattern, support exact, regex.
+	CookiePattern string `json:"cookiePattern"`
 }
 
 // HashInclude defines if a field should be used or not to calculate the hash
