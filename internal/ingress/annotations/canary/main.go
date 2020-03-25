@@ -18,7 +18,6 @@ package canary
 
 import (
 	extensions "k8s.io/api/extensions/v1beta1"
-
 	"k8s.io/ingress-nginx/internal/ingress/annotations/parser"
 	"k8s.io/ingress-nginx/internal/ingress/errors"
 	"k8s.io/ingress-nginx/internal/ingress/resolver"
@@ -36,6 +35,8 @@ type Config struct {
 	HeaderValue   string
 	HeaderPattern string
 	Cookie        string
+	CookieValue   string
+	CookiePattern string
 }
 
 // NewParser parses the ingress for canary related annotations
@@ -79,8 +80,17 @@ func (c canary) Parse(ing *extensions.Ingress) (interface{}, error) {
 		config.Cookie = ""
 	}
 
+	config.CookieValue, err = parser.GetStringAnnotation("canary-by-cookie-value", ing)
+	if err != nil {
+		config.CookieValue = ""
+	}
+
+	config.CookiePattern, err = parser.GetStringAnnotation("canary-by-cookie-pattern", ing)
+	if err != nil {
+		config.CookiePattern = ""
+	}
 	if !config.Enabled && (config.Weight > 0 || len(config.Header) > 0 || len(config.HeaderValue) > 0 || len(config.Cookie) > 0 ||
-		len(config.HeaderPattern) > 0) {
+		len(config.HeaderPattern) > 0 || len(config.CookieValue) > 0 || len(config.CookiePattern) > 0) {
 		return nil, errors.NewInvalidAnnotationConfiguration("canary", "configured but not enabled")
 	}
 
