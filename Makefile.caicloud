@@ -151,13 +151,13 @@ build:
 	@echo "+ Building bin/$(ARCH)/nginx-ingress-controller"
 	@$(DEF_VARS) \
 	GOBUILD_FLAGS="$(GOBUILD_FLAGS)" \
-	build/go-in-docker.sh build/build.sh
+	build/go-in-docker-caicloud.sh build/build.sh
 
 .PHONY: build-plugin
 build-plugin:
 	@$(DEF_VARS) \
 	GOBUILD_FLAGS="$(GOBUILD_FLAGS)" \
-	build/go-in-docker.sh build/build-plugin.sh
+	build/go-in-docker-caicloud.sh build/build-plugin.sh
 
 .PHONY: clean
 clean:
@@ -166,19 +166,19 @@ clean:
 .PHONY: static-check
 static-check:
 	@$(DEF_VARS) \
-	build/go-in-docker.sh build/static-check.sh
+	build/go-in-docker-caicloud.sh build/static-check.sh
 
 .PHONY: test
 test:
 	@$(DEF_VARS)                 \
 	DOCKER_OPTS="-i --net=host"  \
-	build/go-in-docker.sh build/test.sh
+	build/go-in-docker-caicloud.sh build/test.sh
 
 .PHONY: lua-test
 lua-test:
 	@$(DEF_VARS)                 \
 	BUSTED_ARGS="$(BUSTED_ARGS)" \
-	build/go-in-docker.sh build/test-lua.sh
+	build/go-in-docker-caicloud.sh build/test-lua.sh
 
 .PHONY: e2e-test
 e2e-test:
@@ -208,13 +208,13 @@ e2e-test-image:
 e2e-test-binary:
 	@$(DEF_VARS)                 \
 	DOCKER_OPTS="-i --net=host"  \
-	build/go-in-docker.sh build/build-e2e.sh
+	build/go-in-docker-caicloud.sh build/build-e2e.sh
 
 .PHONY: cover
 cover:
 	@$(DEF_VARS)                 \
 	DOCKER_OPTS="-i --net=host"  \
-	build/go-in-docker.sh build/cover.sh
+	build/go-in-docker-caicloud.sh build/cover.sh
 
 	echo "Uploading coverage results..."
 	@curl -s https://codecov.io/bash | bash
