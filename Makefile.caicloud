@@ -131,7 +131,6 @@ ifeq ($(ARCH), amd64)
 	# This is for maintaining backward compatibility
 	$(DOCKER) tag $(MULTI_ARCH_IMG):$(TAG) $(IMAGE):$(TAG)
 endif
-	$(DOCKER) push $(IMAGE):$(TAG)
 	$(SED_I) "s|BASEIMAGE|$(IMAGE):$(TAG)|g" $(DOCKERFILECAICLOUD)
 
 .PHONY: clean-container
