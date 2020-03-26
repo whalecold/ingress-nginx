@@ -67,7 +67,7 @@ ifeq ($(ARCH),arm64)
 endif
 
 #TEMP_DIR := $(shell mktemp -d)
-TEMP_DIR := ./
+TEMP_DIR := .
 
 DEF_VARS:=ARCH=$(ARCH)           \
 	TAG=$(TAG)               \
