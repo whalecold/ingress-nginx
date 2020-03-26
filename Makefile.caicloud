@@ -42,7 +42,8 @@ endif
 
 PKG = k8s.io/ingress-nginx
 
-ARCH ?= $(shell go env GOARCH)
+#ARCH ?= $(shell go env GOARCH)
+ARCH=amd64
 GOARCH = ${ARCH}
 DUMB_ARCH = ${ARCH}
 
