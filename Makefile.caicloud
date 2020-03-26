@@ -77,7 +77,8 @@ DEF_VARS:=ARCH=$(ARCH)           \
 	REPO_INFO=$(REPO_INFO)   \
 	PWD=$(PWD)
 
-DOCKERFILE := $(TEMP_DIR)/rootfs/Dockerfile
+DOCKERFILE         := $(TEMP_DIR)/rootfs/Dockerfile
+DOCKERFILECAICLOUD := $(TEMP_DIR)/rootfs/Dockerfile.caicloud
 
 .PHONY: image-info
 image-info:
@@ -124,12 +125,14 @@ else
 	$(SED_I) "s/CROSS_BUILD_//g" $(DOCKERFILE)
 endif
 
-#	$(DOCKER) build --no-cache --pull -t $(MULTI_ARCH_IMG):$(TAG) $(TEMP_DIR)/rootfs
+	$(DOCKER) build --no-cache --pull -t $(MULTI_ARCH_IMG):$(TAG) $(TEMP_DIR)/rootfs
 
-#ifeq ($(ARCH), amd64)
-#	# This is for maintaining backward compatibility
-#	$(DOCKER) tag $(MULTI_ARCH_IMG):$(TAG) $(IMAGE):$(TAG)
-#endif
+ifeq ($(ARCH), amd64)
+	# This is for maintaining backward compatibility
+	$(DOCKER) tag $(MULTI_ARCH_IMG):$(TAG) $(IMAGE):$(TAG)
+endif
+	$(DOCKER) push $(IMAGE):$(TAG)
+	$(SED_I) "s|BASEIMAGE|$(IMAGE):$(TAG)|g" $(DOCKERFILECAICLOUD)
 
 .PHONY: clean-container
 clean-container:
