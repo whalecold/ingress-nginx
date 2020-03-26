@@ -26,7 +26,7 @@ COPY --chown=www-data:www-data . /
 
 # Fix permission during the build to avoid issues at runtime
 # with volumes (custom templates)
-RUN bash -eu -c ' \
+RUN /bin/bash -eu -c ' \
   writeDirs=( \
     /etc/ingress-controller/ssl \
     /etc/ingress-controller/auth \
